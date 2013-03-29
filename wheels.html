@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Robot Calculator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="http://saasmath.seattleacademy.org/css/bootstrap.css" />
+        <script src="http://saasmath.seattleacademy.org/js/jquery.js"></script>
+        <script>
+            function myFunction(x)
+            {
+                
+                console.log(x);
+              
+                trailingbyte = x % 256;
+                leadingbyte = (x - trailingbyte) / 256;
+                if (x < 0) {
+                   // trailingbyte = (256 * 1 + x * 1) % 256;
+                    //trailingbyte = (trailingbyte*1 - 255)*-1
+                    //trailingbyte = Math.abs(256*1 + x*1) %256;
+                    trailingbyte = 256 + trailingbyte;
+                    leadingbyte = (255 + leadingbyte);
+                //if (x < -257)
+                  //  trailingbyte = 
+                //alert((0xFFFFFFFF + x + 1));
+                }
+                return leadingbyte + " " + trailingbyte;
+
+            }
+            $(document).ready(function() {
+                $('input').keyup(function() {
+                    leftvelocity = myFunction($("#leftvelocity").val());
+                    rightvelocity = myFunction($("#rightvelocity").val());
+                    mybytes = "145 " + rightvelocity + " " + leftvelocity;
+                    
+                    //mybytes = myFunction($("#velocity").val());
+                    //myradius = myFunction($("#radius").val());
+                    //mybytes = "Left Wheel" + " 137 " + mybytes + " " + myradius;
+                   
+                    $('#command').text(mybytes);
+                    
+
+                });
+            });
+        </script>
+
+        <style type="text/css">
+            .correct { 
+                background-color:#00FF00 !important;
+            }
+            .incorrect { 
+                background-color:#FF0000 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Drive</h2>
+            <ul>
+                <li>Right Wheel Velocity<input id ="rightvelocity" type="text"/></li>
+                <li>Left Wheel Velocity<input id ="leftvelocity" type="text"/></li>
+            </ul>
+            command: <span id="command">
+
+            </span>
+        </div>
+
+    </body>
+</html>
